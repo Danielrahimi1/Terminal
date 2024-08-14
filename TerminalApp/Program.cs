@@ -27,9 +27,7 @@ terminal.SellTrip(5, 0, 1500M);
 
 WriteLine($"Plate\t\tType\t\tRevenue");
 foreach (var rev in terminal.BusRevenue())
-{
     WriteLine(rev);
-}
 
 WriteLine($"Most traveled to: {terminal.MostDestination()}");
 WriteLine($"Most traveled from: {terminal.MostOrigin()}");
