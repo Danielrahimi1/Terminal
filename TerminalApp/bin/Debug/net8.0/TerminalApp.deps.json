@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TerminalApp/1.0.0": {
+        "dependencies": {
+          "TerminalLib": "1.0.0"
+        },
+        "runtime": {
+          "TerminalApp.dll": {}
+        }
+      },
+      "TerminalLib/1.0.0": {
+        "runtime": {
+          "TerminalLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TerminalApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TerminalLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
