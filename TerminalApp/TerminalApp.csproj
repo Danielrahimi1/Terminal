@@ -11,4 +11,8 @@
       <ProjectReference Include="..\TerminalLib\TerminalLib.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Using Static="True" Include="System.Console" />
+    </ItemGroup>
+
 </Project>
