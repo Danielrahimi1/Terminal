@@ -12,14 +12,14 @@ public class Terminal
     public void CreateTraveler(string name, string lastName, string nationalCode, string mobile) =>
         _traveler = new Traveler(name, lastName, nationalCode, mobile);
 
-    public void CreateTrip(string start, string end, DateTime date, int busId, decimal price) =>
-        _trips.Add(new Trip(start, end, date, _buses[busId], price));
+    public void CreateTrip(string origin, string destination, DateTime date, int busId, decimal price) =>
+        _trips.Add(new Trip(origin, destination, date, _buses[busId], price));
 
     public void ReserveTrip(int tripId, int busId, decimal cost)
     {
         if (DateTime.Now <= _trips[tripId].Date) return;
         if (_trips[tripId].Capacity == 0) return;
-        if (_trips[tripId].Price*0.3M>cost) return;
+        if (_trips[tripId].Price * 0.3M > cost) return;
         var ticket = new Ticket(_trips[tripId], _buses[busId], _traveler, TicketState.Reserved);
         _trips[tripId].Capacity -= 1;
         _tickets.Add(ticket);
@@ -53,13 +53,24 @@ public class Terminal
 
     public void CreateBus(BusType type, int capacity, string plate) => _buses.Add(new Bus(type, capacity, plate));
 
-    public string MostInTraveler() =>
-        _trips.Select(trip => trip.End).OrderByDescending(end => end.Count()).FirstOrDefault()!;
+    public string MostDestination()
+    {
+        // var asd = _trips.Select(trip => trip.End).GroupBy(_ => _).OrderByDescending(end => end.Count()).FirstOrDefault()!;
+        //return _trips.Select(trip => trip.End).GroupBy(_ => _).OrderDescending().FirstOrDefault()!.Key;
+        // return _trips.GroupBy(trip => trip.End).OrderDescending().FirstOrDefault()!.Key;
+        // return _trips.GroupBy(trip => trip.End).OrderByDescending(end => end.Count()).FirstOrDefault().ToString();
+        // return _trips.GroupBy(trip => trip.End).OrderByDescending(end => end.Count()).FirstOrDefault().ToString();
+        return _trips.GroupBy(trip => trip.Destination).OrderByDescending(_ => _.Count()).FirstOrDefault()!.Key;
+        // .Select(g => g.Key).ToList();
+        //return _trips.Select(trip => trip.End).OrderByDescending(end => end.Count()).FirstOrDefault()!;
+        // return "";
+    }
+
     // _trips.Select(trip => trip.End).MaxBy();
 
 
-    public string MostOutTraveler() =>
-        _trips.Select(trip => trip.Start).OrderByDescending(start => start.Count()).FirstOrDefault()!;
+    public string MostOrigin() => _trips.GroupBy(trip => trip.Origin).OrderByDescending(_ => _.Count()).FirstOrDefault()!.Key;
+    // _trips.Select(trip => trip.Origin).OrderByDescending(origin => origin.Count()).FirstOrDefault()!;
 
     public List<BusDto> BusRevenue()
     {
