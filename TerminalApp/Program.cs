@@ -25,7 +25,7 @@ terminal.SellTrip(5, 0, 1500M);
 terminal.SellTrip(5, 0, 1500M);
 
 
-Console.WriteLine($"Plate\t\tType\t\tRevenue");
+WriteLine($"Plate\t\tType\t\tRevenue");
 foreach (var rev in terminal.BusRevenue())
 {
     WriteLine(rev);
